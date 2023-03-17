@@ -1,11 +1,6 @@
-import 'dart:convert';
 import 'dart:developer';
-
-import 'package:explore/constants/constants.dart';
-import 'package:explore/models/chat_model.dart';
 import 'package:explore/providers/chats_provider.dart';
 import 'package:explore/providers/models_provider.dart';
-import 'package:explore/services/api_servies.dart';
 import 'package:explore/services/assets_manger.dart';
 import 'package:explore/services/services.dart';
 import 'package:explore/widgets/chat_widget.dart';
@@ -49,6 +44,7 @@ class _ChatScreenState extends State<ChatScreen> {
     final chatProvider = Provider.of<ChatProvider>(context);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 20, 34, 36),
         actions: [
           IconButton(
             onPressed: () async {
@@ -57,73 +53,78 @@ class _ChatScreenState extends State<ChatScreen> {
             icon: const Icon(Icons.more_vert_rounded),
           ),
         ],
-        title: const Text("Explore"),
+        title: const Text("Explore with ChatGPT"),
         elevation: 2,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Image.asset(AssetsManager.openaiLogo),
+          child: Image.asset(AssetsManager.openaiLogo,),
         ),
       ),
-      body: SafeArea(
-          child: Column(
-        children: [
-          Flexible(
-            child: ListView.builder(
-              controller: _listSrollController,
-              itemBuilder: (context, index) {
-                return ChatWidget(
-                  msg: chatProvider.getChatList[index].msg, //[index].msg,
-                  chatIndex: chatProvider.getChatList[index].chatIndex,
-                );
-              },
-              itemCount: chatProvider.getChatList.length,
+      body: Container(
+        decoration: BoxDecoration(color:Color.fromARGB(112, 94, 111, 114)),
+        child: SafeArea(
+            child: Column(
+          children: [
+            Flexible(
+              child: ListView.builder(
+              
+                controller: _listSrollController,
+                itemBuilder: (context, index) {
+                  return ChatWidget(
+                    msg: chatProvider.getChatList[index].msg, //[index].msg,
+                    chatIndex: chatProvider.getChatList[index].chatIndex,
+                  );
+                },
+                itemCount: chatProvider.getChatList.length,
+              ),
             ),
-          ),
-          if (_istyping) ...[
-            const SpinKitThreeBounce(
-              color: Colors.white,
-              size: 18,
+            if (_istyping) ...[
+              const SpinKitThreeBounce(
+                color: Colors.white,
+                size: 18,
+              ),
+            ],
+            const SizedBox(
+              height: 15,
             ),
-          ],
-          const SizedBox(
-            height: 15,
-          ),
-          Material(
-            color: cardColor,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      focusNode: focusNode,
-                      style: const TextStyle(color: Colors.white),
-                      controller: textEditingController,
-                      onSubmitted: (value) async {
+            Material(
+              color: Color.fromARGB(255, 20, 34, 36),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+      
+                        focusNode: focusNode,
+                        style: const TextStyle(color: Colors.white),
+                        controller: textEditingController,
+                        onSubmitted: (value) async {
+                          await sendMessageFCT(
+                              modelsProvider: modelsProvider,
+                              chatProvider: chatProvider);
+                        },
+                        decoration: const InputDecoration.collapsed(
+                            hintText: "How can i help you",
+                            hintStyle: TextStyle(color: Colors.white)),
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () async {
                         await sendMessageFCT(
                             modelsProvider: modelsProvider,
                             chatProvider: chatProvider);
                       },
-                      decoration: const InputDecoration.collapsed(
-                          hintText: "How can i help you",
-                          hintStyle: TextStyle(color: Colors.white)),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () async {
-                      await sendMessageFCT(
-                          modelsProvider: modelsProvider,
-                          chatProvider: chatProvider);
-                    },
-                    icon: const Icon(Icons.send),
-                    color: Colors.white,
-                  )
-                ],
+                      icon: const Icon(Icons.send),
+                      color: Colors.white,
+                    )
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
-      )),
+            )
+          ],
+        )),
+      ),
     );
   }
 

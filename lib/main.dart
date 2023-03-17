@@ -1,7 +1,7 @@
 import 'package:explore/constants/constants.dart';
 import 'package:explore/providers/chats_provider.dart';
 import 'package:explore/providers/models_provider.dart';
-import 'package:explore/screens/chat_screen.dart';
+import 'package:explore/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             scaffoldBackgroundColor: scaffoldBackgroundColor,
             appBarTheme: AppBarTheme(color: cardColor)),
-        home: const ChatScreen(),
+        home: const splashScreen(),
       ),
     );
   }

@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 class ModelsModel {
   final String id;
   final int created;

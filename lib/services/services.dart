@@ -1,6 +1,5 @@
 import 'package:explore/widgets/drop_down.dart';
 import 'package:flutter/material.dart';
-
 import '../constants/constants.dart';
 import '../widgets/text_widget.dart';
 

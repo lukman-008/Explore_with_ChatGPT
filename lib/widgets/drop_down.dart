@@ -1,7 +1,6 @@
 import 'package:explore/constants/constants.dart';
 import 'package:explore/models/models_model.dart';
 import 'package:explore/providers/models_provider.dart';
-import 'package:explore/services/api_servies.dart';
 import 'package:explore/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
