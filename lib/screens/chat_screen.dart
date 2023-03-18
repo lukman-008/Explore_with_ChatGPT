@@ -56,6 +56,7 @@ class _ChatScreenState extends State<ChatScreen> {
         child: SafeArea(
             child: Column(
           children: [
+            SizedBox(height: 2,),
             ChatWidget(msg: "welcome ", chatIndex: 1),
             Flexible(
               child: ListView.builder(
