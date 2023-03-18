@@ -44,7 +44,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                       ? TextWidget(label: widget.msg)
                       : DefaultTextStyle(
                           style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.w700),
+                              color: Colors.white, fontWeight: FontWeight.w700,fontSize: 18),
                           child: AnimatedTextKit(
                             isRepeatingAnimation: false,
                             repeatForever: false,

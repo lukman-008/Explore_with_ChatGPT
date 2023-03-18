@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'package:explore/providers/chats_provider.dart';
 import 'package:explore/providers/models_provider.dart';
 import 'package:explore/services/assets_manger.dart';
-import 'package:explore/services/services.dart';
 import 'package:explore/widgets/chat_widget.dart';
 import 'package:explore/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
@@ -45,14 +44,6 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 20, 34, 36),
-        actions: [
-          IconButton(
-            onPressed: () async {
-              await Services.showModelSheet(context: context);
-            },
-            icon: const Icon(Icons.more_vert_rounded),
-          ),
-        ],
         title: const Text("Explore with ChatGPT"),
         elevation: 2,
         leading: Padding(
@@ -65,6 +56,7 @@ class _ChatScreenState extends State<ChatScreen> {
         child: SafeArea(
             child: Column(
           children: [
+            ChatWidget(msg: "welcome ", chatIndex: 1),
             Flexible(
               child: ListView.builder(
               
